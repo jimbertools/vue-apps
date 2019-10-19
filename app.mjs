@@ -1,12 +1,9 @@
-import Vue from './packages/vue.mjs'
-import VueRouter from './packages/vue-router.mjs'
-import httpVueLoader from './packages/httpVueLoader.mjs'
 
-
-Vue.use(VueRouter)
+//import Vue from './packages/vue.mjs' Currently not possible, vuetify doesnt like vue EMS
+import httpVueLoader from './packages/ems/httpVueLoader.mjs'
+import VueRouter from './packages/ems/vue-router.mjs'
 
 let url = 'apps/apps.json';
-
 fetch(url).then(async (res) => {
     let apps = await res.json();
 
@@ -20,8 +17,7 @@ fetch(url).then(async (res) => {
         name: 'settings page'
     }
     ];
-    for(let app of apps){ // Loop all apps from 3bot
-        console.log(app)
+    for (let app of apps) { // Loop all apps from 3bot
         for (const route of app.routes) { // loop all routes of the app from 3bot
             routes.push(
                 {
@@ -32,21 +28,19 @@ fetch(url).then(async (res) => {
             )
         }
     }
-    console.log(routes)
     const router = new VueRouter({
-      routes
+        routes
     })
 
-  
+
     new Vue({
         el: '#app', // This should be the same as your <div id=""> from earlier.
+        vuetify: new Vuetify(),
         components: {
             'app': httpVueLoader('./templates/app.vue'),
         },
         router,
         template: '<app></app>'
     })
-
-
 
 })

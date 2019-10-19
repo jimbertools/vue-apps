@@ -18,6 +18,6 @@ module.exports = {
 
 <style scoped>
 div {
-  background-color: yellow;
+
 }
 </style>

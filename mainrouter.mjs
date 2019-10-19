@@ -1,11 +1,11 @@
-import Vue from './packages/vue.mjs';
-import Router from './packages/vue-router.mjs'
-import httpVueLoader from './packages/httpVueLoader.mjs'
+import Vue from './packages/ems/vue.mjs';
+import Router from './packages/ems/vue-router.mjs'
+import httpVueLoader from './packages/ems/httpVueLoader.mjs'
 //import home from './views/home.vue'
 //import settings from './views/settings.vue'
 
 Vue.use(Router)
-console.log("router!")
+
 export default new Router({
   mode: 'history',
   routes: [
