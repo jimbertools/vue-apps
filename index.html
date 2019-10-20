@@ -3,19 +3,24 @@
 
 <head>
     <title>Vue.js ESM</title>
-    <link rel="stylesheet" type="text/css" href="packages/legacy/vuetify.min.css">
-    <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons' rel="stylesheet"
-    type="text/css">
+    <link rel="stylesheet" type="text/css" href="packages/legacy/vuetify/vuetify.min.css">
+    <link href='packages/legacy/vuetify/vuetify.min.css' rel="stylesheet" type="text/css">
+    <!-- <link href='packages/legacy/vuetify/material.css' rel="stylesheet" type="text/css"> -->
 </head>
 
 <body>
+    yo wtf
     <div id="app">
         <h1>hifdsfads</h1>
         {{ message }}
     </div>
     <!-- LEGACY IMPORTS TODO: delete when we have vuetify with EMS -->
     <script src='packages/legacy/vue.js'></script>
-    <script src='packages/legacy/vuetify.js'></script>
+    <script src='packages/legacy/vuetify/vuetify.js'></script>
+    <script src='packages/legacy/axios.min.js'></script>
+    <script>
+        var Axios = axios;
+    </script>
 
     <script type="module" src="app.mjs"></script>
 
