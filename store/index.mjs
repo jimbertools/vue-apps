@@ -1,26 +1,18 @@
-//import Vue from 'vue'
-import vuex from '../packages/ems/vuex.mjs'
-import appStore from './appStore.mjs'
+// import Vue from 'vue'
+import Vuex from '../packages/ems/vuex.mjs'
+import appStore from './appStore.js'
+import mainStore from './mainStore.js'
+// import authStore from './authStore.js'
 
-let Vuex = vuex;
-window.vuex = vuex;
-vuex.jimber = true;
-
-
-import contactStore from './contactStore.js'
-import ffcStore from './ffcStore.js'
-import authStore from './authStore.js'
-import mailStore from './mailStore.js'
-
+window.vuex = Vuex
+Vuex.jimber = true
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
   modules: {
     appStore,
- //   contactStore,
-   // ffcStore,
-   // authStore,
-    //mailStore
+    mainStore
+    // authStore
   }
 })

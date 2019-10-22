@@ -1,6 +1,6 @@
 //import Axios from 'axios'
 
-import config from '../../config/config.mjs'
+import config from '../../config/index.js'
 
 export default ({
   getApps() {

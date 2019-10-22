@@ -1,5 +1,5 @@
 //import Axios from 'axios'
-import config from '../../config/config.mjs'
+import config from '../../config/index.js'
 //import moment from 'moment'
 // import { resolve } from 'url'
 // import { reject } from 'q'

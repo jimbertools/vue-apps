@@ -34,15 +34,7 @@ export default ({
   },
   getters: {
     apps: (state) => state.apps,
-    activeApps: (state) => (routes) => {
-      var activeApps = []
-      state.apps.forEach(app => {
-        if (app.installed) {
-          var appRoute = routes.find(x => x.meta.appName === app.appname)
-          activeApps.push(appRoute)
-        }
-      })
-      return activeApps
-    }
+    activeApps: (state) => state.apps.filter(a => a.installed)
+
   }
 })

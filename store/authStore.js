@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 import botService from '../services/3botService.js'
-import config from '../../config/config.mjs'
+import config from '../../config/index.js'
 import cryptoService from '../services/cryptoService.js'
 
 export default ({

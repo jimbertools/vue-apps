@@ -19,12 +19,7 @@
           </v-toolbar>
         </div>
         <div>
-          <v-list-item
-            v-for="(route, i) in topRoutes"
-            :key="i"
-            active-class="secondary--text"
-            :to="route"
-          >
+          <v-list-item v-for="(route, i) in topRoutes" :key="i" active-class="secondary--text" :to="route">
             <v-list-item-icon>
               <v-icon>{{ route.meta.icon }}</v-icon>
             </v-list-item-icon>
@@ -35,12 +30,7 @@
         </div>
         <v-spacer></v-spacer>
         <div>
-          <v-list-item
-            v-for="(route, i) in bottomRoutes"
-            :key="i"
-            active-class="secondary--text"
-            :to="route"
-          >
+          <v-list-item v-for="(route, i) in bottomRoutes" :key="i" active-class="secondary--text" :to="route">
             <v-list-item-icon>
               <v-icon>{{ route.meta.icon }}</v-icon>
             </v-list-item-icon>
@@ -59,28 +49,16 @@
         </div>
       </v-layout>
     </v-navigation-drawer>
-    <v-content class="content">
+    <v-content app class="content">
       <router-view></router-view>
     </v-content>
-    <v-bottom-navigation
-      v-if="$vuetify.breakpoint.mdAndDown"
-      grow
-      dark
-      class="primary topround"
-      app
-      shift
-      :value="$route.name"
-    >
-      <v-btn
-        :value="route.name"
-        icon
-        v-for="(route, i) in bottomNavApps"
-        :key="i"
-        @click="switchApplication(route)"
-      >
-        <span>{{route.name}}</span>
-        <v-icon>{{route.meta.icon}}</v-icon>
+    <v-bottom-navigation v-if="$vuetify.breakpoint.mdAndDown" grow dark class="primary topround" app shift
+      :value="$route.name">
+      <v-btn :value="route.name" icon v-for="(route, i) in bottomNavApps" :key="route.name" :to="route">
+        <span class="text-capitalize">{{route.meta.displayName || route.name}}</span>
+        <v-icon :key="route.meta.icon">{{route.meta.icon}}</v-icon>
       </v-btn>
+      <v-btn color="success" @click="$store.dispatch('getContacts')">text</v-btn>
     </v-bottom-navigation>
   </v-app>
 </section>

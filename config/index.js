@@ -1,15 +1,16 @@
-import localConfig from './config.local'
-import stagingConfig from './config.staging'
-import prodConfig from './config.prod'
+import localConfig from './config.local.js'
+import stagingConfig from './config.staging.js'
+import prodConfig from './config.prod.js'
 
 var config
-if (process.env.NODE_ENV === 'production') {
-  config = prodConfig
-} else if (process.env.NODE_ENV === 'staging') {
-  config = stagingConfig
-} else {
+// TODO: find a way to check if is production/staging/dev
+// if (process.env.NODE_ENV === 'production') {
+//   config = prodConfig
+// } else if (process.env.NODE_ENV === 'staging') {
+//   config = stagingConfig
+// } else {
   config = localConfig
-}
+// }
 
 export default ({
   ...config,
