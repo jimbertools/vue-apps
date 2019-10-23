@@ -3,8 +3,16 @@
 import httpVueLoader from './packages/ems/httpVueLoader.mjs'
 import VueRouter from './packages/ems/vue-router.mjs'
 import './packages/legacy/fontawesome-pro/js/all.js'
-
+import config from './config/index.js'
 import store from './store/index.mjs'
+
+Vue.prototype.$rules = {
+  required: v => !!v || 'This is required',
+  email: v => (/.+@.+\..+/.test(v) || !v) || 'E-mail must be valid',
+  noLongerThan100: v => (v && v.length <= 100) || 'This must be less than 100 characters'
+}
+
+window.config = config
 
 const router = new VueRouter({
   routes: [{

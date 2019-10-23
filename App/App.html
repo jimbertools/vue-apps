@@ -52,13 +52,12 @@
     <v-content app class="content">
       <router-view></router-view>
     </v-content>
-    <v-bottom-navigation v-if="$vuetify.breakpoint.mdAndDown" grow dark class="primary topround" app shift
+    <v-bottom-navigation absolute v-if="$vuetify.breakpoint.mdAndDown" grow dark class="primary topround" app shift
       :value="$route.name">
       <v-btn :value="route.name" icon v-for="(route, i) in bottomNavApps" :key="route.name" :to="route">
         <span class="text-capitalize">{{route.meta.displayName || route.name}}</span>
         <v-icon :key="route.meta.icon">{{route.meta.icon}}</v-icon>
       </v-btn>
-      <v-btn color="success" @click="$store.dispatch('getContacts')">text</v-btn>
     </v-bottom-navigation>
   </v-app>
 </section>

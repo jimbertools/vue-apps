@@ -33,3 +33,6 @@ textarea {
 .v-list--three-line .v-list-item {
   min-height: 0 !important;
 }
+.v-avatar {
+  overflow: hidden;
+}

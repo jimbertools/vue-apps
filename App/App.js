@@ -49,43 +49,40 @@ module.exports = {
     },
     getAllRoutes (app) {
       return app.routes.map(route => {
+        console.log(`Adding`, `http://localhost:8082/apps/contacts/${route.component}`)
         return {
           path: `/${app.appname.toLowerCase()}${route.path}`,
-          component: httpVueLoader(`http://localhost:8081/api/actors/${route.component}`),
+          component: httpVueLoader(`http://localhost:8082/apps/contacts/${route.component}`),
           name: `${app.appname.toLowerCase()}-${route.name}`,
           meta: {
             ...route.meta,
+            app: true,
             position: 'top'
           }
         }
       })
     },
     async readUrl (url) {
-      d
       return (await fetch(url)).text()
     }
   },
   watch: {
-    async activeApps (val) {
-      for (let app of val) { // Loop all apps from 3bot
-        this.$router.addRoutes(this.getAllRoutes(app))
-        this.getAllRoutes(app).forEach(route => {
-          if (!this.routes.some(r => r.name === route.name)) this.addRoute(route)
-        })
-        this.$store.registerModule(`${app.appname}Store`, import(`http://localhost:8081/api/actors/${app.store}`))
-        // this.$store.registerModule(`${app.appname}Store`, {
-        //   state: {
-        //     some_items: []
-        //   },
-        //   getters: {
-        //     items: state => state.some_items
-        //   },
-        //   actions: {
-        //     getContacts (context) { console.log(`fdsafds`) }
-        //   },
-        //   mutations: {}
-        // })
-        console.log(`this.$store`, this.$store)
+    async activeApps (val, oldVal) {
+      if (JSON.stringify(val) !== JSON.stringify(oldVal)) {
+        for (let app of val) { // Loop all apps from 3bot
+          this.getAllRoutes(app).forEach(route => {
+            if (!this.routes.some(r => r.name === route.name)) {
+              console.log(`Adding ${route.name}`)
+              this.addRoute(route)
+              this.$router.addRoutes([route])
+            } 
+          })
+          // TODO: Check if there is a store
+          const storeName = `${app.appname.toLowerCase()}Store`
+          if(!Object.keys(this.$store['_modules'].root['_children']).some(x => x === storeName)){
+            this.$store.registerModule(storeName, await import(`http://localhost:8082/apps/contacts/${app.store}`))
+          }
+        }
       }
     }
   }

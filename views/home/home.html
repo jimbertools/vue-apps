@@ -8,21 +8,21 @@
                 <h1 class="display-2 font-weight-bold">3Bot</h1>
             </v-col>
             <v-sheet :height="75" class="transparent"></v-sheet>
-            <!-- <v-row align="center" justify="center">
-                <div v-for="(route, i) in activeApps" :key="i" class="text-center px-5">
+            <v-row align="center" justify="center">
+                <div v-for="(route, i) in routes.filter(r => r.meta && r.meta.app)" :key="i" class="text-center px-5">
                     <span @click="$router.push(route)" style="cursor: pointer">
                         <v-avatar size="50" class="ma-3 primary">
                             <v-icon size="25" class="white--text">{{route.meta.icon}}</v-icon>
                         </v-avatar>
-                        <p class="text-uppercase">{{route.name}}</p>
+                        <p class="text-capitalize">{{route.meta.displayName || route.name}}</p>
                     </span>
                 </div>
-                <div v-if="!activeApps.length" class="text-center px-5">
+                <div v-if="!routes.length" class="text-center px-5">
                     <v-row>It seems like you don't have any apps installed.</v-row>
                     <v-row align="center" justify="center" class="text-center">Go to the <v-btn small text
                             :to="{name: 'appstore'}" color="secondary">appstore</v-btn> and install some.</v-row>
                 </div>
-            </v-row> -->
+            </v-row>
             <v-sheet :height="200" class="transparent"></v-sheet>
         </v-col>
     </v-row>

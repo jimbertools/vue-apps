@@ -10,7 +10,7 @@ module.exports = {
   },
   computed: {
     ...window.vuex.mapGetters([
-      'activeApps'
+      'routes'
     ])
   },
   mounted () {
