@@ -1,4 +1,8 @@
-# Frontend getting started
+# Buildfree Vue.js with Vuetify
+
+## Info
+
+Attempt to run full blown vue project with dependencies without using any package manger. Vue.js already has support for this using EMS modules, unfortunately this is not the case for some other deps such as Vuetify.
 
 ## Serve for development
 
@@ -7,12 +11,7 @@ http-server
 ```
 > if needed you can install this with `npm i -g http-server`
 
-
-
-## Info
-
-Attempt to run full blown vue project with dependencies without using any package manger. Vue.js already has support for this using EMS modules, unfortunately this is not the case for some other deps such as Vuetify.
-
+Beware you need a server that puts the correct MIME type on .mjs and .js files for this to work!
 
 ## Types of packages
 
