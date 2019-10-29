@@ -224,11 +224,15 @@ module.exports = {
     referredByError: [],
     countryError: [],
     seedError: [],
-    doubleName: "mdw95.3bot"
+    doubleName: "mdw95.3bot" // Get this value from the 3bot.
   }),
 
   methods: {
     async initialize3Bot() {
+
+      console.log('bip39 :', bip39);
+
+      
 
       if (!this.country) {
         this.countryError.push("Please select a country.")
@@ -256,7 +260,7 @@ module.exports = {
       }
 
       var userDataKeys
-      
+
       if (this.seed) {
         try {
           this.seed = this.seed.replace(/[^a-zA-Z ]/g, "").toLowerCase().trim().replace(/\s\s+/g, ' ')
@@ -274,8 +278,25 @@ module.exports = {
       console.log('userDataResponse.data.publicKey :', userDataResponse.data.publicKey);
       console.log('userDataKeys.publicKey :', userDataKeys.publicKey);
 
-      if(userDataResponse.data.publicKey === userDataKeys.publicKey) {
+      if (userDataResponse.data.publicKey === userDataKeys.publicKey) {
         console.log("We can now initialize ... ")
+
+        console.log(`Calculating wallet keys from main key ... `)
+        let that = this
+        pbkdf2(userDataKeys.privateKey, 'wallet.threefold.me', 1000, 32, 'sha256', async function (error, result) {
+          console.log(result);
+
+          
+          var b64encoded = nacl.util.encodeBase64(result);
+          console.log("pbkdf2 Seed: ", b64encoded)
+
+
+          console.log("Wallet URL: ", "https://wallet.threefold.me/login#username=" + that.doubleName + "&derivedSeed=" + encodeURIComponent(b64encoded))
+
+          let walletMnemonicSeed = that.generateMnemonicFromSeed(result)
+          console.log('walletMnemonicSeed :', walletMnemonicSeed);
+          console.log('generateKeys(walletMnemonicSeed) :', await that.generateKeys(walletMnemonicSeed));
+        })
       }
     },
 
@@ -299,6 +320,13 @@ module.exports = {
           reject(error)
         }
       })
+    },
+
+    generateMnemonicFromSeed(seed) {
+      return bip39.entropyToMnemonic(seed);
+    },
+    generateSeedFromMnemonic(mnemonic) {
+      return bip39.mnemonicToEntropy(mnemonic);
     }
   },
 }
