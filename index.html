@@ -5,22 +5,25 @@
     <title>Vue.js ESM</title>
     <link rel="stylesheet" type="text/css" href="packages/legacy/vuetify/vuetify.min.css">
     <link href='packages/legacy/vuetify/vuetify.min.css' rel="stylesheet" type="text/css">
-    <!-- <link href='packages/legacy/vuetify/material.css' rel="stylesheet" type="text/css"> -->
 </head>
 
 <body>
     <div id="app">
     </div>
-    <!-- LEGACY IMPORTS TODO: delete when we have vuetify with EMS -->
-    <script src='packages/legacy/vue.js'></script>
-    <script src='packages/legacy/vuetify/vuetify.js'></script>
-    <script src='packages/legacy/axios.min.js'></script>
+
+    <script type='text/javascript' src='packages/legacy/vue.js' async></script>
+    <script type='text/javascript' src='packages/legacy/vuetify/vuetify.js' async></script>
+    <script type='text/javascript' src='packages/legacy/axios.min.js' async></script>
+
+    <script type='text/javascript' src='packages/legacy/tweet-nacl/nacl-util.min.js' async></script>
+    <script type='text/javascript' src='packages/legacy/sodium/browser/sodium.js' async></script>
+    <script type='text/javascript' src='packages/legacy/bip39/bip39.browserify.min.js' async></script>
+
     <script>
         var Axios = axios;
     </script>
 
     <script type="module" src="app.mjs"></script>
-
 </body>
 
 </html>

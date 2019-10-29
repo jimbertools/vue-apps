@@ -1,4 +1,4 @@
-import appService from '../services/appServices.mjs'
+import appService from '../services/appServices.js'
 export default ({
   state: {
     apps: []

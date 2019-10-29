@@ -1,26 +1,41 @@
-
-// import Vue from './packages/vue.mjs' Currently not possible, vuetify doesnt like vue EMS
 import httpVueLoader from './packages/ems/httpVueLoader.mjs'
+import apiService from './services/apiServices.js'
 import VueRouter from './packages/ems/vue-router.mjs'
-import './packages/legacy/fontawesome-pro/js/all.js'
+import './packages/legacy/fontawesome-pro/js/all.min.js'
 
 import store from './store/index.mjs'
+
+
+window.apiService = apiService
 
 const router = new VueRouter({
   routes: [{
     path: '/',
     component: httpVueLoader('./views/home/index.vue'),
     name: 'home',
-    meta: { icon: 'fa-home', position: 'top' }
+    meta: {
+      icon: 'fa-home',
+      position: 'top'
+    }
   }, {
     path: '/appstore',
     component: httpVueLoader('./views/appstore/index.vue'),
     name: 'appstore',
-    meta: { icon: 'fa-th', position: 'bottom' }
+    meta: {
+      icon: 'fa-th',
+      position: 'bottom'
+    }
   }, {
     path: '/login',
     name: 'login',
     component: httpVueLoader('./views/login/index.vue'),
+    meta: {
+      position: 'none'
+    }
+  }, {
+    path: '/initialize',
+    name: 'initialize',
+    component: httpVueLoader('./views/initialize/index.vue'),
     meta: {
       position: 'none'
     }
@@ -47,5 +62,6 @@ var app = new Vue({
   },
   router,
   store,
+  apiService,
   template: '<app></app>'
 })

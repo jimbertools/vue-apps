@@ -1,0 +1,23 @@
+<section class="login fill-height">
+    <v-layout column fill-height align-center justify-center>
+        <v-row align="center">
+            <v-card min-width="600px" class="pa-3">
+                <v-card-title>
+                    <h3>Welcome to your 3bot ({{ doubleName }})</h3>
+                </v-card-title>
+
+                <v-form ref="form" v-model="valid">
+                    <v-select v-model="country" menu-props="auto" :items="countries" label="Country" :error-messages="countryError" @input="countryError = []"></v-select>
+
+                    <v-text-field v-model="referredBy" label="Referred by (name)" required :error-messages="referredByError" @input="referredByError = []"></v-text-field>
+
+                    <v-textarea v-model="seed" label="Seed phrase" required :error-messages="seedError" @input="seedError = []"></v-textarea>
+
+                    <v-btn color="success" class="mr-4 float-right" @click="initialize3Bot">
+                        Initialize 3bot
+                    </v-btn>
+                </v-form>
+            </v-card>
+        </v-row>
+    </v-layout>
+</section>
